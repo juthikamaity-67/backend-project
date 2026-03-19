@@ -37,7 +37,7 @@ def predict():
         risk_percent = round(float(probs[0][0][1]) * 100, 2)
 
         # Severity logic
-        if risk_percent >= 70:
+        if risk_percent >= 80:
             severity, color = "High (Critical)", "red"
         elif risk_percent >= 40:
             severity, color = "Moderate", "orange"
