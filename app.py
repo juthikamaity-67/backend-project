@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
 import joblib
 import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*":{"origins":"*"}})
 
 # Load objects directly (assuming you fixed the notebook save logic)
 model = joblib.load("heart_disease_model.pkl")
