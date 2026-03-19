@@ -29,13 +29,15 @@ def predict():
         # FIX for Multi-output KNN: Your notebook shows KNN returns a list
         # knn.predict_proba(...) returns [array_for_target, array_for_severity]
         probs = model.predict_proba(scaled_features)
+
+       
         
         # Access the first element [0] for the "Target" (disease) probability
         # and index [1] for the positive class (disease present)
         risk_percent = round(float(probs[0][0][1]) * 100, 2)
 
         # Severity logic
-        if risk_percent >= 80:
+        if risk_percent >= 70:
             severity, color = "High (Critical)", "red"
         elif risk_percent >= 40:
             severity, color = "Moderate", "orange"
@@ -48,7 +50,7 @@ def predict():
 
         return jsonify({
             "target_text": target_text,
-            "risk_percentage": f"{risk_percent}%",
+            "risk_percentage": f"{risk_percent}%",    
             "severity": severity,
             "result_color": color
         })
